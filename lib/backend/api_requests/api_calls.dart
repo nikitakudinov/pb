@@ -23,6 +23,7 @@ class UserGroup {
   static String baseUrl = 'http://31.28.27.82:8090/api/collections/users/';
   static Map<String, String> headers = {};
   static AddCall addCall = AddCall();
+  static UploadAvatarCall uploadAvatarCall = UploadAvatarCall();
 }
 
 class AddCall {
@@ -46,6 +47,27 @@ class AddCall {
         'password': password,
         'passwordConfirm': passwordConfirm,
         'nickname': nickname,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class UploadAvatarCall {
+  Future<ApiCallResponse> call({
+    FFUploadedFile? avatar,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Upload Avatar',
+      apiUrl: '${UserGroup.baseUrl}records',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'avatar': avatar,
       },
       bodyType: BodyType.MULTIPART,
       returnBody: true,

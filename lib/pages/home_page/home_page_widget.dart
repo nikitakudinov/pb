@@ -1,7 +1,9 @@
 import '/auth/custom_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -81,6 +83,126 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               Text(
                 currentAuthenticationToken!,
                 style: FlutterFlowTheme.of(context).bodyMedium,
+              ),
+              FFButtonWidget(
+                onPressed: () async {
+                  final selectedMedia = await selectMedia(
+                    maxWidth: 150.00,
+                    maxHeight: 150.00,
+                    imageQuality: 100,
+                    mediaSource: MediaSource.photoGallery,
+                    multiImage: false,
+                  );
+                  if (selectedMedia != null &&
+                      selectedMedia.every(
+                          (m) => validateFileFormat(m.storagePath, context))) {
+                    setState(() => _model.isDataUploading = true);
+                    var selectedUploadedFiles = <FFUploadedFile>[];
+
+                    try {
+                      selectedUploadedFiles = selectedMedia
+                          .map((m) => FFUploadedFile(
+                                name: m.storagePath.split('/').last,
+                                bytes: m.bytes,
+                                height: m.dimensions?.height,
+                                width: m.dimensions?.width,
+                                blurHash: m.blurHash,
+                              ))
+                          .toList();
+                    } finally {
+                      _model.isDataUploading = false;
+                    }
+                    if (selectedUploadedFiles.length == selectedMedia.length) {
+                      setState(() {
+                        _model.uploadedLocalFile = selectedUploadedFiles.first;
+                      });
+                    } else {
+                      setState(() {});
+                      return;
+                    }
+                  }
+                },
+                text: 'Выбрать файл',
+                options: FFButtonOptions(
+                  height: 40.0,
+                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  iconPadding:
+                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: FlutterFlowTheme.of(context).primary,
+                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily: 'Barlow Semi Condensed',
+                        color: Colors.white,
+                      ),
+                  elevation: 3.0,
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+              FFButtonWidget(
+                onPressed: () async {
+                  _model.apiResultvvj = await UserGroup.uploadAvatarCall.call(
+                    avatar: _model.uploadedLocalFile,
+                  );
+                  if ((_model.apiResultvvj?.succeeded ?? true)) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Файл загружен',
+                          style: TextStyle(
+                            color: FlutterFlowTheme.of(context).primaryText,
+                          ),
+                        ),
+                        duration: Duration(milliseconds: 4000),
+                        backgroundColor: FlutterFlowTheme.of(context).secondary,
+                      ),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Ошибка',
+                          style: TextStyle(
+                            color: FlutterFlowTheme.of(context).primaryText,
+                          ),
+                        ),
+                        duration: Duration(milliseconds: 4000),
+                        backgroundColor: FlutterFlowTheme.of(context).secondary,
+                      ),
+                    );
+                  }
+
+                  setState(() {});
+                },
+                text: 'Загрузить',
+                options: FFButtonOptions(
+                  height: 40.0,
+                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  iconPadding:
+                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: FlutterFlowTheme.of(context).primary,
+                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily: 'Barlow Semi Condensed',
+                        color: Colors.white,
+                      ),
+                  elevation: 3.0,
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.memory(
+                  _model.uploadedLocalFile.bytes ?? Uint8List.fromList([]),
+                  width: 150.0,
+                  height: 150.0,
+                  fit: BoxFit.cover,
+                ),
               ),
             ],
           ),
