@@ -28,9 +28,9 @@ class _AuthorizationWidgetState extends State<AuthorizationWidget> {
     super.initState();
     _model = createModel(context, () => AuthorizationModel());
 
-    _model.emailController ??= TextEditingController();
+    _model.emailController ??= TextEditingController(text: 'nosia');
     _model.emailFocusNode ??= FocusNode();
-    _model.passwordController ??= TextEditingController();
+    _model.passwordController ??= TextEditingController(text: '123123123');
     _model.passwordFocusNode ??= FocusNode();
   }
 
