@@ -15,17 +15,14 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   // State field(s) for email widget.
   FocusNode? emailFocusNode;
   TextEditingController? emailController;
-  late bool emailVisibility;
   String? Function(BuildContext, String?)? emailControllerValidator;
   // State field(s) for login widget.
   FocusNode? loginFocusNode1;
   TextEditingController? loginController1;
-  late bool loginVisibility1;
   String? Function(BuildContext, String?)? loginController1Validator;
   // State field(s) for login widget.
   FocusNode? loginFocusNode2;
   TextEditingController? loginController2;
-  late bool loginVisibility2;
   String? Function(BuildContext, String?)? loginController2Validator;
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
@@ -43,9 +40,6 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    emailVisibility = false;
-    loginVisibility1 = false;
-    loginVisibility2 = false;
     passwordVisibility = false;
     repasswordVisibility = false;
   }

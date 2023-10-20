@@ -114,7 +114,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                 child: TextFormField(
                                   controller: _model.emailController,
                                   focusNode: _model.emailFocusNode,
-                                  obscureText: !_model.emailVisibility,
+                                  obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Электронная почта',
                                     labelStyle: FlutterFlowTheme.of(context)
@@ -156,19 +156,6 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                     filled: true,
                                     fillColor:
                                         FlutterFlowTheme.of(context).tertiary,
-                                    suffixIcon: InkWell(
-                                      onTap: () => setState(
-                                        () => _model.emailVisibility =
-                                            !_model.emailVisibility,
-                                      ),
-                                      focusNode: FocusNode(skipTraversal: true),
-                                      child: Icon(
-                                        _model.emailVisibility
-                                            ? Icons.visibility_outlined
-                                            : Icons.visibility_off_outlined,
-                                        size: 22,
-                                      ),
-                                    ),
                                   ),
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
@@ -182,7 +169,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                 child: TextFormField(
                                   controller: _model.loginController1,
                                   focusNode: _model.loginFocusNode1,
-                                  obscureText: !_model.loginVisibility1,
+                                  obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Логин',
                                     labelStyle: FlutterFlowTheme.of(context)
@@ -224,19 +211,6 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                     filled: true,
                                     fillColor:
                                         FlutterFlowTheme.of(context).tertiary,
-                                    suffixIcon: InkWell(
-                                      onTap: () => setState(
-                                        () => _model.loginVisibility1 =
-                                            !_model.loginVisibility1,
-                                      ),
-                                      focusNode: FocusNode(skipTraversal: true),
-                                      child: Icon(
-                                        _model.loginVisibility1
-                                            ? Icons.visibility_outlined
-                                            : Icons.visibility_off_outlined,
-                                        size: 22,
-                                      ),
-                                    ),
                                   ),
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
@@ -247,7 +221,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                               TextFormField(
                                 controller: _model.loginController2,
                                 focusNode: _model.loginFocusNode2,
-                                obscureText: !_model.loginVisibility2,
+                                obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Никнейм',
                                   labelStyle:
@@ -287,19 +261,6 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                   filled: true,
                                   fillColor:
                                       FlutterFlowTheme.of(context).tertiary,
-                                  suffixIcon: InkWell(
-                                    onTap: () => setState(
-                                      () => _model.loginVisibility2 =
-                                          !_model.loginVisibility2,
-                                    ),
-                                    focusNode: FocusNode(skipTraversal: true),
-                                    child: Icon(
-                                      _model.loginVisibility2
-                                          ? Icons.visibility_outlined
-                                          : Icons.visibility_off_outlined,
-                                      size: 22,
-                                    ),
-                                  ),
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyMedium,
                                 validator: _model.loginController2Validator
