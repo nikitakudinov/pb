@@ -478,6 +478,23 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                             nickname:
                                                 _model.loginController2.text,
                                           );
+                                          if ((_model.apiResult9h4?.succeeded ??
+                                              true)) {
+                                            context.pushNamed(
+                                              'AUTHORIZATION',
+                                              queryParameters: {
+                                                'username': serializeParam(
+                                                  _model.loginController1.text,
+                                                  ParamType.String,
+                                                ),
+                                                'password': serializeParam(
+                                                  _model
+                                                      .passwordController.text,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          }
 
                                           setState(() {});
                                         },
