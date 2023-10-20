@@ -253,18 +253,29 @@ class _AuthorizationWidgetState extends State<AuthorizationWidget> {
                                               .prepareAuthEvent();
                                           await authManager.signIn(
                                             authenticationToken:
-                                                AuthorizationCall.token(
-                                              (_model.apiResultuyd?.jsonBody ??
-                                                  ''),
-                                            ).toString(),
+                                                valueOrDefault<String>(
+                                              AuthorizationCall.token(
+                                                (_model.apiResultuyd
+                                                        ?.jsonBody ??
+                                                    ''),
+                                              ).toString(),
+                                              '0',
+                                            ),
                                             refreshToken:
-                                                currentAuthRefreshToken,
+                                                valueOrDefault<String>(
+                                              currentAuthRefreshToken,
+                                              '0',
+                                            ),
                                             tokenExpiration:
                                                 currentAuthTokenExpiration,
-                                            authUid: AuthorizationCall.recordid(
-                                              (_model.apiResultuyd?.jsonBody ??
-                                                  ''),
-                                            ).toString(),
+                                            authUid: valueOrDefault<String>(
+                                              AuthorizationCall.recordid(
+                                                (_model.apiResultuyd
+                                                        ?.jsonBody ??
+                                                    ''),
+                                              ).toString(),
+                                              '0',
+                                            ),
                                           );
                                           _navigate = () => context.goNamedAuth(
                                               'HomePage', context.mounted);
