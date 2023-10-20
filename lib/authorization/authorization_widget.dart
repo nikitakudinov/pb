@@ -394,8 +394,8 @@ class _AuthorizationWidgetState extends State<AuthorizationWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: FFButtonWidget(
-                                        onPressed: () {
-                                          print('RegisterButton pressed ...');
+                                        onPressed: () async {
+                                          context.pushNamed('REGISTRATION');
                                         },
                                         text: 'Регистрация',
                                         options: FFButtonOptions(
