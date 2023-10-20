@@ -1,3 +1,4 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -75,6 +76,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             children: [
               Text(
                 FFAppState().authenticatedUser.id,
+                style: FlutterFlowTheme.of(context).bodyMedium,
+              ),
+              Text(
+                currentAuthenticationToken!,
                 style: FlutterFlowTheme.of(context).bodyMedium,
               ),
             ],
