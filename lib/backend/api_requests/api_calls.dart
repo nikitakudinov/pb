@@ -17,6 +17,46 @@ class TemplateGroup {
 
 /// End template Group Code
 
+/// Start USER Group Code
+
+class UserGroup {
+  static String baseUrl =
+      'https://pocketbase.proplayclub.ru/api/collections/users/';
+  static Map<String, String> headers = {};
+  static AddCall addCall = AddCall();
+}
+
+class AddCall {
+  Future<ApiCallResponse> call({
+    String? username = '',
+    String? email = '',
+    String? password = '',
+    String? passwordConfirm = '',
+    String? nickname = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'ADD',
+      apiUrl: '${UserGroup.baseUrl}records',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'username': username,
+        'email': email,
+        'password': password,
+        'passwordConfirm': passwordConfirm,
+        'nickname': nickname,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+/// End USER Group Code
+
 class AuthorizationCall {
   static Future<ApiCallResponse> call({
     String? identity = '',

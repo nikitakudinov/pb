@@ -12,7 +12,14 @@ import 'authorization_model.dart';
 export 'authorization_model.dart';
 
 class AuthorizationWidget extends StatefulWidget {
-  const AuthorizationWidget({Key? key}) : super(key: key);
+  const AuthorizationWidget({
+    Key? key,
+    this.username,
+    this.password,
+  }) : super(key: key);
+
+  final String? username;
+  final String? password;
 
   @override
   _AuthorizationWidgetState createState() => _AuthorizationWidgetState();
@@ -28,7 +35,9 @@ class _AuthorizationWidgetState extends State<AuthorizationWidget> {
     super.initState();
     _model = createModel(context, () => AuthorizationModel());
 
-    _model.emailController ??= TextEditingController(text: 'nosia');
+    _model.emailController ??= TextEditingController(
+        text:
+            '${widget.username == null || widget.username == '' ? 'nosia' : widget.username}');
     _model.emailFocusNode ??= FocusNode();
     _model.passwordController ??= TextEditingController(text: '123123123');
     _model.passwordFocusNode ??= FocusNode();

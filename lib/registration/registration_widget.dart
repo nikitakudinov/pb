@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -27,6 +28,10 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
 
     _model.emailController ??= TextEditingController();
     _model.emailFocusNode ??= FocusNode();
+    _model.loginController1 ??= TextEditingController();
+    _model.loginFocusNode1 ??= FocusNode();
+    _model.loginController2 ??= TextEditingController();
+    _model.loginFocusNode2 ??= FocusNode();
     _model.passwordController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
     _model.repasswordController ??= TextEditingController();
@@ -103,12 +108,148 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 10.0),
+                                child: TextFormField(
+                                  controller: _model.emailController,
+                                  focusNode: _model.emailFocusNode,
+                                  obscureText: !_model.emailVisibility,
+                                  decoration: InputDecoration(
+                                    labelText: 'Электронная почта',
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium,
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiary,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    filled: true,
+                                    fillColor:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                    suffixIcon: InkWell(
+                                      onTap: () => setState(
+                                        () => _model.emailVisibility =
+                                            !_model.emailVisibility,
+                                      ),
+                                      focusNode: FocusNode(skipTraversal: true),
+                                      child: Icon(
+                                        _model.emailVisibility
+                                            ? Icons.visibility_outlined
+                                            : Icons.visibility_off_outlined,
+                                        size: 22,
+                                      ),
+                                    ),
+                                  ),
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  validator: _model.emailControllerValidator
+                                      .asValidator(context),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 10.0),
+                                child: TextFormField(
+                                  controller: _model.loginController1,
+                                  focusNode: _model.loginFocusNode1,
+                                  obscureText: !_model.loginVisibility1,
+                                  decoration: InputDecoration(
+                                    labelText: 'Логин',
+                                    labelStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium,
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiary,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    filled: true,
+                                    fillColor:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                    suffixIcon: InkWell(
+                                      onTap: () => setState(
+                                        () => _model.loginVisibility1 =
+                                            !_model.loginVisibility1,
+                                      ),
+                                      focusNode: FocusNode(skipTraversal: true),
+                                      child: Icon(
+                                        _model.loginVisibility1
+                                            ? Icons.visibility_outlined
+                                            : Icons.visibility_off_outlined,
+                                        size: 22,
+                                      ),
+                                    ),
+                                  ),
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  validator: _model.loginController1Validator
+                                      .asValidator(context),
+                                ),
+                              ),
                               TextFormField(
-                                controller: _model.emailController,
-                                focusNode: _model.emailFocusNode,
-                                obscureText: !_model.emailVisibility,
+                                controller: _model.loginController2,
+                                focusNode: _model.loginFocusNode2,
+                                obscureText: !_model.loginVisibility2,
                                 decoration: InputDecoration(
-                                  labelText: 'Электронная почта',
+                                  labelText: 'Никнейм',
                                   labelStyle:
                                       FlutterFlowTheme.of(context).labelMedium,
                                   hintStyle:
@@ -148,12 +289,12 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                       FlutterFlowTheme.of(context).tertiary,
                                   suffixIcon: InkWell(
                                     onTap: () => setState(
-                                      () => _model.emailVisibility =
-                                          !_model.emailVisibility,
+                                      () => _model.loginVisibility2 =
+                                          !_model.loginVisibility2,
                                     ),
                                     focusNode: FocusNode(skipTraversal: true),
                                     child: Icon(
-                                      _model.emailVisibility
+                                      _model.loginVisibility2
                                           ? Icons.visibility_outlined
                                           : Icons.visibility_off_outlined,
                                       size: 22,
@@ -161,7 +302,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                   ),
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyMedium,
-                                validator: _model.emailControllerValidator
+                                validator: _model.loginController2Validator
                                     .asValidator(context),
                               ),
                               Padding(
@@ -324,8 +465,21 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: FFButtonWidget(
-                                        onPressed: () {
-                                          print('RegisterButton pressed ...');
+                                        onPressed: () async {
+                                          _model.apiResult9h4 =
+                                              await UserGroup.addCall.call(
+                                            username:
+                                                _model.loginController1.text,
+                                            email: _model.emailController.text,
+                                            password:
+                                                _model.passwordController.text,
+                                            passwordConfirm: _model
+                                                .repasswordController.text,
+                                            nickname:
+                                                _model.loginController2.text,
+                                          );
+
+                                          setState(() {});
                                         },
                                         text: 'Регистрация',
                                         options: FFButtonOptions(

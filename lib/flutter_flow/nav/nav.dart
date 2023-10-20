@@ -97,7 +97,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'AUTHORIZATION',
           path: '/authorization',
-          builder: (context, params) => AuthorizationWidget(),
+          builder: (context, params) => AuthorizationWidget(
+            username: params.getParam('username', ParamType.String),
+            password: params.getParam('password', ParamType.String),
+          ),
         ),
         FFRoute(
           name: 'REGISTRATION',

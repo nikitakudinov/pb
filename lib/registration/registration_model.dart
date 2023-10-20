@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -16,6 +17,16 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   TextEditingController? emailController;
   late bool emailVisibility;
   String? Function(BuildContext, String?)? emailControllerValidator;
+  // State field(s) for login widget.
+  FocusNode? loginFocusNode1;
+  TextEditingController? loginController1;
+  late bool loginVisibility1;
+  String? Function(BuildContext, String?)? loginController1Validator;
+  // State field(s) for login widget.
+  FocusNode? loginFocusNode2;
+  TextEditingController? loginController2;
+  late bool loginVisibility2;
+  String? Function(BuildContext, String?)? loginController2Validator;
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordController;
@@ -26,11 +37,15 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
   TextEditingController? repasswordController;
   late bool repasswordVisibility;
   String? Function(BuildContext, String?)? repasswordControllerValidator;
+  // Stores action output result for [Backend Call - API (ADD)] action in RegisterButton widget.
+  ApiCallResponse? apiResult9h4;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
     emailVisibility = false;
+    loginVisibility1 = false;
+    loginVisibility2 = false;
     passwordVisibility = false;
     repasswordVisibility = false;
   }
@@ -39,6 +54,12 @@ class RegistrationModel extends FlutterFlowModel<RegistrationWidget> {
     unfocusNode.dispose();
     emailFocusNode?.dispose();
     emailController?.dispose();
+
+    loginFocusNode1?.dispose();
+    loginController1?.dispose();
+
+    loginFocusNode2?.dispose();
+    loginController2?.dispose();
 
     passwordFocusNode?.dispose();
     passwordController?.dispose();
