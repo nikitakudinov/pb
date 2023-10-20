@@ -86,10 +86,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 currentUserData!.email,
                 style: FlutterFlowTheme.of(context).bodyMedium,
               ),
-              Text(
-                FFAppState().authenticatedUser.username,
-                style: FlutterFlowTheme.of(context).bodyMedium,
-              ),
             ],
           ),
         ),
