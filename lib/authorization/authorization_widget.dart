@@ -289,8 +289,39 @@ class _AuthorizationWidgetState extends State<AuthorizationWidget> {
                                                   (_model.apiResultuyd
                                                           ?.jsonBody ??
                                                       ''),
+                                                ).toString()
+                                                ..collectionId =
+                                                    AuthorizationCall
+                                                        .recordcollectionId(
+                                                  (_model.apiResultuyd
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ).toString()
+                                                ..collectionName =
+                                                    AuthorizationCall
+                                                        .recordcollectionName(
+                                                  (_model.apiResultuyd
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ).toString()
+                                                ..username = AuthorizationCall
+                                                    .recordusername(
+                                                  (_model.apiResultuyd
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ).toString()
+                                                ..verified = AuthorizationCall
+                                                    .recordverified(
+                                                  (_model.apiResultuyd
+                                                          ?.jsonBody ??
+                                                      ''),
                                                 ).toString(),
                                             );
+                                            FFAppState().token =
+                                                AuthorizationCall.token(
+                                              (_model.apiResultuyd?.jsonBody ??
+                                                  ''),
+                                            ).toString();
                                           });
                                         } else {
                                           await showDialog(
