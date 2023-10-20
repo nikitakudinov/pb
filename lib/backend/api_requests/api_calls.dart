@@ -20,8 +20,7 @@ class TemplateGroup {
 /// Start USER Group Code
 
 class UserGroup {
-  static String baseUrl =
-      'https://pocketbase.proplayclub.ru/api/collections/users/';
+  static String baseUrl = 'http://31.28.27.82:8090/api/collections/users/';
   static Map<String, String> headers = {};
   static AddCall addCall = AddCall();
 }
@@ -38,7 +37,9 @@ class AddCall {
       callName: 'ADD',
       apiUrl: '${UserGroup.baseUrl}records',
       callType: ApiCallType.POST,
-      headers: {},
+      headers: {
+        'Authorization': 'TOKEN',
+      },
       params: {
         'username': username,
         'email': email,
