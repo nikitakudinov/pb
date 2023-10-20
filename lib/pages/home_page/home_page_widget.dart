@@ -86,12 +86,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  final selectedMedia = await selectMediaWithSourceBottomSheet(
-                    context: context,
+                  final selectedMedia = await selectMedia(
                     maxWidth: 150.00,
                     maxHeight: 150.00,
                     imageQuality: 100,
-                    allowPhoto: true,
+                    mediaSource: MediaSource.photoGallery,
+                    multiImage: false,
                   );
                   if (selectedMedia != null &&
                       selectedMedia.every(
