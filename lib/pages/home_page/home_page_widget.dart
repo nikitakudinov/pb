@@ -1,4 +1,3 @@
-import '/auth/custom_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -73,20 +72,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            children: [
-              Text(
-                currentAuthenticationToken!,
-                style: FlutterFlowTheme.of(context).bodyMedium,
-              ),
-              Text(
-                currentUserUid,
-                style: FlutterFlowTheme.of(context).bodyMedium,
-              ),
-              Text(
-                currentUserData!.email,
-                style: FlutterFlowTheme.of(context).bodyMedium,
-              ),
-            ],
+            children: [],
           ),
         ),
       ),
