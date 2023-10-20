@@ -1,5 +1,6 @@
 import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -279,6 +280,18 @@ class _AuthorizationWidgetState extends State<AuthorizationWidget> {
                                           );
                                           _navigate = () => context.goNamedAuth(
                                               'HomePage', context.mounted);
+                                          setState(() {
+                                            FFAppState()
+                                                .updateAuthenticatedUserStruct(
+                                              (e) => e
+                                                ..id =
+                                                    AuthorizationCall.recordid(
+                                                  (_model.apiResultuyd
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ).toString(),
+                                            );
+                                          });
                                         } else {
                                           await showDialog(
                                             context: context,
