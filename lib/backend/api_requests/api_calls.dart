@@ -68,7 +68,7 @@ class UserslistCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'USERSLIST',
-      apiUrl: '${UserGroup.baseUrl}records?fields=username,id,avatar',
+      apiUrl: '${UserGroup.baseUrl}records',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': 'TOKEN',
