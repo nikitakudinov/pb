@@ -23,6 +23,7 @@ class UserGroup {
   static String baseUrl = 'http://31.28.27.82:8090/api/collections/users/';
   static Map<String, String> headers = {};
   static AddCall addCall = AddCall();
+  static UserslistCall userslistCall = UserslistCall();
   static UploadAvatarCall uploadAvatarCall = UploadAvatarCall();
 }
 
@@ -55,6 +56,51 @@ class AddCall {
       cache: false,
     );
   }
+}
+
+class UserslistCall {
+  Future<ApiCallResponse> call({
+    String? username = '',
+    String? email = '',
+    String? password = '',
+    String? passwordConfirm = '',
+    String? nickname = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'USERSLIST',
+      apiUrl: '${UserGroup.baseUrl}records?fields=username,id,avatar',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'TOKEN',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic items(dynamic response) => getJsonField(
+        response,
+        r'''$.items''',
+        true,
+      );
+  dynamic avatar(dynamic response) => getJsonField(
+        response,
+        r'''$.items[:].avatar''',
+        true,
+      );
+  dynamic id(dynamic response) => getJsonField(
+        response,
+        r'''$.items[:].id''',
+        true,
+      );
+  dynamic username(dynamic response) => getJsonField(
+        response,
+        r'''$.items[:].username''',
+        true,
+      );
 }
 
 class UploadAvatarCall {

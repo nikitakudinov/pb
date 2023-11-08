@@ -68,6 +68,35 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInUsers(int _index, UserStruct _value) {
     _users.insert(_index, _value);
   }
+
+  List<TournamentStruct> _tournamentsList = [];
+  List<TournamentStruct> get tournamentsList => _tournamentsList;
+  set tournamentsList(List<TournamentStruct> _value) {
+    _tournamentsList = _value;
+  }
+
+  void addToTournamentsList(TournamentStruct _value) {
+    _tournamentsList.add(_value);
+  }
+
+  void removeFromTournamentsList(TournamentStruct _value) {
+    _tournamentsList.remove(_value);
+  }
+
+  void removeAtIndexFromTournamentsList(int _index) {
+    _tournamentsList.removeAt(_index);
+  }
+
+  void updateTournamentsListAtIndex(
+    int _index,
+    TournamentStruct Function(TournamentStruct) updateFn,
+  ) {
+    _tournamentsList[_index] = updateFn(_tournamentsList[_index]);
+  }
+
+  void insertAtIndexInTournamentsList(int _index, TournamentStruct _value) {
+    _tournamentsList.insert(_index, _value);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
