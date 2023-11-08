@@ -102,20 +102,43 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     itemCount: usersList.length,
                     itemBuilder: (context, usersListIndex) {
                       final usersListItem = usersList[usersListIndex];
-                      return Column(
+                      return Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Text(
-                            usersListItem.username,
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          Container(
+                            width: 45.0,
+                            height: 45.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(0.0),
+                              child: Image.network(
+                                'https://picsum.photos/seed/641/600',
+                                width: 45.0,
+                                height: 45.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
-                          Text(
-                            usersListItem.id,
-                            style: FlutterFlowTheme.of(context).bodyMedium,
-                          ),
-                          Text(
-                            usersListItem.username,
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                usersListItem.username,
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                              ),
+                              Text(
+                                usersListItem.id,
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                              ),
+                              Text(
+                                usersListItem.username,
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                              ),
+                            ],
                           ),
                         ],
                       );
