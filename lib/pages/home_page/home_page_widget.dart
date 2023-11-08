@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -57,7 +58,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
           automaticallyImplyLeading: false,
           title: Text(
             'Page Title',
@@ -143,8 +144,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  _model.apiResultvvj = await UserGroup.uploadAvatarCall.call(
-                    avatar: _model.uploadedLocalFile,
+                  unawaited(
+                    () async {
+                      _model.apiResultvvj =
+                          await UserGroup.uploadAvatarCall.call(
+                        avatar: _model.uploadedLocalFile,
+                      );
+                    }(),
                   );
                   if ((_model.apiResultvvj?.succeeded ?? true)) {
                     ScaffoldMessenger.of(context).showSnackBar(
