@@ -80,19 +80,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? HomePageWidget() : AuthorizationWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : AuthorizationWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? HomePageWidget()
-              : AuthorizationWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? NavBarPage() : AuthorizationWidget(),
         ),
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
-          builder: (context, params) => HomePageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'HomePage')
+              : HomePageWidget(),
         ),
         FFRoute(
           name: 'AUTHORIZATION',
@@ -110,7 +111,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'PROFILE_EDITE',
           path: '/profileEdite',
-          builder: (context, params) => ProfileEditeWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'PROFILE_EDITE')
+              : ProfileEditeWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
