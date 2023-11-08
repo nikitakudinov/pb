@@ -106,6 +106,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'REGISTRATION',
           path: '/registration',
           builder: (context, params) => RegistrationWidget(),
+        ),
+        FFRoute(
+          name: 'PROFILE_EDITE',
+          path: '/profileEdite',
+          builder: (context, params) => ProfileEditeWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
