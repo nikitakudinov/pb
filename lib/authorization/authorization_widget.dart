@@ -39,6 +39,7 @@ class _AuthorizationWidgetState extends State<AuthorizationWidget> {
         text:
             '${widget.username == null || widget.username == '' ? 'nosia' : widget.username}');
     _model.emailFocusNode ??= FocusNode();
+
     _model.passwordController ??= TextEditingController(text: '123123123');
     _model.passwordFocusNode ??= FocusNode();
   }

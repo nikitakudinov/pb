@@ -6,14 +6,20 @@ import 'custom_auth_user_provider.dart';
 export 'custom_auth_manager.dart';
 
 class CustomAuthManager {
+  // Auth session attributes
   String? authenticationToken;
   String? refreshToken;
   DateTime? tokenExpiration;
+  // User attributes
+  String? uid;
+  UserStruct? userData;
 
   Future signOut() async {
     authenticationToken = null;
     refreshToken = null;
     tokenExpiration = null;
+    uid = null;
+    userData = null;
     // Update the current user.
     pocketbaseAuthUserSubject.add(
       PocketbaseAuthUser(loggedIn: false),
@@ -66,6 +72,8 @@ class CustomAuthManager {
     this.authenticationToken = authenticationToken;
     this.refreshToken = refreshToken;
     this.tokenExpiration = tokenExpiration;
+    this.uid = authUid;
+    this.userData = userData;
     // Update the current user stream.
     final updatedUser = PocketbaseAuthUser(
       loggedIn: true,
@@ -73,6 +81,7 @@ class CustomAuthManager {
       userData: userData,
     );
     pocketbaseAuthUserSubject.add(updatedUser);
+
     return updatedUser;
   }
 }

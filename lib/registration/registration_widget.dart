@@ -28,12 +28,16 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
 
     _model.emailController ??= TextEditingController();
     _model.emailFocusNode ??= FocusNode();
+
     _model.loginController1 ??= TextEditingController();
     _model.loginFocusNode1 ??= FocusNode();
+
     _model.loginController2 ??= TextEditingController();
     _model.loginFocusNode2 ??= FocusNode();
+
     _model.passwordController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
+
     _model.repasswordController ??= TextEditingController();
     _model.repasswordFocusNode ??= FocusNode();
   }
