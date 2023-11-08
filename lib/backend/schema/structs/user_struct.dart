@@ -9,7 +9,6 @@ class UserStruct extends BaseStruct {
   UserStruct({
     String? id,
     String? username,
-    String? avatar,
     String? collectionId,
     String? collectionName,
     String? created,
@@ -18,9 +17,10 @@ class UserStruct extends BaseStruct {
     String? nickname,
     String? tag,
     String? updated,
+    bool? verified,
+    String? avatar,
   })  : _id = id,
         _username = username,
-        _avatar = avatar,
         _collectionId = collectionId,
         _collectionName = collectionName,
         _created = created,
@@ -28,7 +28,9 @@ class UserStruct extends BaseStruct {
         _name = name,
         _nickname = nickname,
         _tag = tag,
-        _updated = updated;
+        _updated = updated,
+        _verified = verified,
+        _avatar = avatar;
 
   // "id" field.
   String? _id;
@@ -41,12 +43,6 @@ class UserStruct extends BaseStruct {
   String get username => _username ?? '';
   set username(String? val) => _username = val;
   bool hasUsername() => _username != null;
-
-  // "avatar" field.
-  String? _avatar;
-  String get avatar => _avatar ?? '';
-  set avatar(String? val) => _avatar = val;
-  bool hasAvatar() => _avatar != null;
 
   // "collectionId" field.
   String? _collectionId;
@@ -96,10 +92,21 @@ class UserStruct extends BaseStruct {
   set updated(String? val) => _updated = val;
   bool hasUpdated() => _updated != null;
 
+  // "verified" field.
+  bool? _verified;
+  bool get verified => _verified ?? false;
+  set verified(bool? val) => _verified = val;
+  bool hasVerified() => _verified != null;
+
+  // "avatar" field.
+  String? _avatar;
+  String get avatar => _avatar ?? '';
+  set avatar(String? val) => _avatar = val;
+  bool hasAvatar() => _avatar != null;
+
   static UserStruct fromMap(Map<String, dynamic> data) => UserStruct(
         id: data['id'] as String?,
         username: data['username'] as String?,
-        avatar: data['avatar'] as String?,
         collectionId: data['collectionId'] as String?,
         collectionName: data['collectionName'] as String?,
         created: data['created'] as String?,
@@ -108,6 +115,8 @@ class UserStruct extends BaseStruct {
         nickname: data['nickname'] as String?,
         tag: data['tag'] as String?,
         updated: data['updated'] as String?,
+        verified: data['verified'] as bool?,
+        avatar: data['avatar'] as String?,
       );
 
   static UserStruct? maybeFromMap(dynamic data) =>
@@ -116,7 +125,6 @@ class UserStruct extends BaseStruct {
   Map<String, dynamic> toMap() => {
         'id': _id,
         'username': _username,
-        'avatar': _avatar,
         'collectionId': _collectionId,
         'collectionName': _collectionName,
         'created': _created,
@@ -125,6 +133,8 @@ class UserStruct extends BaseStruct {
         'nickname': _nickname,
         'tag': _tag,
         'updated': _updated,
+        'verified': _verified,
+        'avatar': _avatar,
       }.withoutNulls;
 
   @override
@@ -135,10 +145,6 @@ class UserStruct extends BaseStruct {
         ),
         'username': serializeParam(
           _username,
-          ParamType.String,
-        ),
-        'avatar': serializeParam(
-          _avatar,
           ParamType.String,
         ),
         'collectionId': serializeParam(
@@ -173,6 +179,14 @@ class UserStruct extends BaseStruct {
           _updated,
           ParamType.String,
         ),
+        'verified': serializeParam(
+          _verified,
+          ParamType.bool,
+        ),
+        'avatar': serializeParam(
+          _avatar,
+          ParamType.String,
+        ),
       }.withoutNulls;
 
   static UserStruct fromSerializableMap(Map<String, dynamic> data) =>
@@ -184,11 +198,6 @@ class UserStruct extends BaseStruct {
         ),
         username: deserializeParam(
           data['username'],
-          ParamType.String,
-          false,
-        ),
-        avatar: deserializeParam(
-          data['avatar'],
           ParamType.String,
           false,
         ),
@@ -232,6 +241,16 @@ class UserStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        verified: deserializeParam(
+          data['verified'],
+          ParamType.bool,
+          false,
+        ),
+        avatar: deserializeParam(
+          data['avatar'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -242,7 +261,6 @@ class UserStruct extends BaseStruct {
     return other is UserStruct &&
         id == other.id &&
         username == other.username &&
-        avatar == other.avatar &&
         collectionId == other.collectionId &&
         collectionName == other.collectionName &&
         created == other.created &&
@@ -250,14 +268,15 @@ class UserStruct extends BaseStruct {
         name == other.name &&
         nickname == other.nickname &&
         tag == other.tag &&
-        updated == other.updated;
+        updated == other.updated &&
+        verified == other.verified &&
+        avatar == other.avatar;
   }
 
   @override
   int get hashCode => const ListEquality().hash([
         id,
         username,
-        avatar,
         collectionId,
         collectionName,
         created,
@@ -265,14 +284,15 @@ class UserStruct extends BaseStruct {
         name,
         nickname,
         tag,
-        updated
+        updated,
+        verified,
+        avatar
       ]);
 }
 
 UserStruct createUserStruct({
   String? id,
   String? username,
-  String? avatar,
   String? collectionId,
   String? collectionName,
   String? created,
@@ -281,11 +301,12 @@ UserStruct createUserStruct({
   String? nickname,
   String? tag,
   String? updated,
+  bool? verified,
+  String? avatar,
 }) =>
     UserStruct(
       id: id,
       username: username,
-      avatar: avatar,
       collectionId: collectionId,
       collectionName: collectionName,
       created: created,
@@ -294,4 +315,6 @@ UserStruct createUserStruct({
       nickname: nickname,
       tag: tag,
       updated: updated,
+      verified: verified,
+      avatar: avatar,
     );
