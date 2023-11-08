@@ -102,9 +102,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     itemCount: usersList.length,
                     itemBuilder: (context, usersListIndex) {
                       final usersListItem = usersList[usersListIndex];
-                      return Row(
+                      return Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
+                          Text(
+                            usersListItem.username,
+                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          ),
+                          Text(
+                            usersListItem.id,
+                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          ),
                           Text(
                             usersListItem.username,
                             style: FlutterFlowTheme.of(context).bodyMedium,
