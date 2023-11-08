@@ -87,15 +87,20 @@ class _ProfileEditeWidgetState extends State<ProfileEditeWidget> {
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.memory(
-                          _model.uploadedLocalFile.bytes ??
-                              Uint8List.fromList([]),
-                          width: 100.0,
-                          height: 100.0,
-                          fit: BoxFit.cover,
-                        ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.memory(
+                              _model.uploadedLocalFile.bytes ??
+                                  Uint8List.fromList([]),
+                              width: 100.0,
+                              height: 100.0,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Row(
@@ -242,6 +247,10 @@ class _ProfileEditeWidgetState extends State<ProfileEditeWidget> {
                     ),
                   ],
                 ),
+              ),
+              Text(
+                'Hello World',
+                style: FlutterFlowTheme.of(context).bodyMedium,
               ),
             ],
           ),

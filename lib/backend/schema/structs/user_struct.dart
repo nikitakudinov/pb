@@ -7,18 +7,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class UserStruct extends BaseStruct {
   UserStruct({
-    String? avatar,
     String? id,
     String? username,
-  })  : _avatar = avatar,
-        _id = id,
-        _username = username;
-
-  // "avatar" field.
-  String? _avatar;
-  String get avatar => _avatar ?? '';
-  set avatar(String? val) => _avatar = val;
-  bool hasAvatar() => _avatar != null;
+    String? avatar,
+  })  : _id = id,
+        _username = username,
+        _avatar = avatar;
 
   // "id" field.
   String? _id;
@@ -32,27 +26,29 @@ class UserStruct extends BaseStruct {
   set username(String? val) => _username = val;
   bool hasUsername() => _username != null;
 
+  // "avatar" field.
+  String? _avatar;
+  String get avatar => _avatar ?? '';
+  set avatar(String? val) => _avatar = val;
+  bool hasAvatar() => _avatar != null;
+
   static UserStruct fromMap(Map<String, dynamic> data) => UserStruct(
-        avatar: data['avatar'] as String?,
         id: data['id'] as String?,
         username: data['username'] as String?,
+        avatar: data['avatar'] as String?,
       );
 
   static UserStruct? maybeFromMap(dynamic data) =>
       data is Map<String, dynamic> ? UserStruct.fromMap(data) : null;
 
   Map<String, dynamic> toMap() => {
-        'avatar': _avatar,
         'id': _id,
         'username': _username,
+        'avatar': _avatar,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'avatar': serializeParam(
-          _avatar,
-          ParamType.String,
-        ),
         'id': serializeParam(
           _id,
           ParamType.String,
@@ -61,15 +57,14 @@ class UserStruct extends BaseStruct {
           _username,
           ParamType.String,
         ),
+        'avatar': serializeParam(
+          _avatar,
+          ParamType.String,
+        ),
       }.withoutNulls;
 
   static UserStruct fromSerializableMap(Map<String, dynamic> data) =>
       UserStruct(
-        avatar: deserializeParam(
-          data['avatar'],
-          ParamType.String,
-          false,
-        ),
         id: deserializeParam(
           data['id'],
           ParamType.String,
@@ -77,6 +72,11 @@ class UserStruct extends BaseStruct {
         ),
         username: deserializeParam(
           data['username'],
+          ParamType.String,
+          false,
+        ),
+        avatar: deserializeParam(
+          data['avatar'],
           ParamType.String,
           false,
         ),
@@ -88,22 +88,22 @@ class UserStruct extends BaseStruct {
   @override
   bool operator ==(Object other) {
     return other is UserStruct &&
-        avatar == other.avatar &&
         id == other.id &&
-        username == other.username;
+        username == other.username &&
+        avatar == other.avatar;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([avatar, id, username]);
+  int get hashCode => const ListEquality().hash([id, username, avatar]);
 }
 
 UserStruct createUserStruct({
-  String? avatar,
   String? id,
   String? username,
+  String? avatar,
 }) =>
     UserStruct(
-      avatar: avatar,
       id: id,
       username: username,
+      avatar: avatar,
     );
