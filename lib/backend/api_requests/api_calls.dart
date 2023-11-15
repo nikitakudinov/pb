@@ -20,7 +20,8 @@ class TemplateGroup {
 /// Start USER Group Code
 
 class UserGroup {
-  static String baseUrl = 'http://31.28.27.82:8090/api/collections/users/';
+  static String baseUrl =
+      'http://pocketbase.proplayclub.ru/api/collections/users/';
   static Map<String, String> headers = {};
   static AddCall addCall = AddCall();
   static UserslistCall userslistCall = UserslistCall();
@@ -59,13 +60,7 @@ class AddCall {
 }
 
 class UserslistCall {
-  Future<ApiCallResponse> call({
-    String? username = '',
-    String? email = '',
-    String? password = '',
-    String? passwordConfirm = '',
-    String? nickname = '',
-  }) async {
+  Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'USERSLIST',
       apiUrl: '${UserGroup.baseUrl}records',
@@ -111,7 +106,9 @@ class UploadAvatarCall {
       callName: 'Upload Avatar',
       apiUrl: '${UserGroup.baseUrl}records',
       callType: ApiCallType.POST,
-      headers: {},
+      headers: {
+        'Authorization': 'TOKEN',
+      },
       params: {
         'avatar': avatar,
       },

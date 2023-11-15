@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import 'dart:async';
 import 'profile_edite_widget.dart' show ProfileEditeWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,7 +18,7 @@ class ProfileEditeModel extends FlutterFlowModel<ProfileEditeWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // Stores action output result for [Backend Call - API (Upload Avatar)] action in Button widget.
-  ApiCallResponse? apiResultsz7;
+  ApiCallResponse? apiResultsz712;
 
   /// Initialization and disposal methods.
 

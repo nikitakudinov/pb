@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -178,15 +177,11 @@ class _ProfileEditeWidgetState extends State<ProfileEditeWidget> {
                       children: [
                         FFButtonWidget(
                           onPressed: () async {
-                            unawaited(
-                              () async {
-                                _model.apiResultsz7 =
-                                    await UserGroup.uploadAvatarCall.call(
-                                  avatar: _model.uploadedLocalFile,
-                                );
-                              }(),
+                            _model.apiResultsz712 =
+                                await UserGroup.uploadAvatarCall.call(
+                              avatar: _model.uploadedLocalFile,
                             );
-                            if ((_model.apiResultsz7?.succeeded ?? true)) {
+                            if ((_model.apiResultsz712?.succeeded ?? true)) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(

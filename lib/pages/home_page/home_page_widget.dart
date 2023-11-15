@@ -1,11 +1,9 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -28,21 +26,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => HomePageModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.usersJson = await UserGroup.userslistCall.call();
-      _model.usersDT = await actions.jsonToDTuser(
-        UserGroup.userslistCall
-            .items(
-              (_model.usersJson?.jsonBody ?? ''),
-            )
-            ?.toList(),
-      );
-      setState(() {
-        FFAppState().users = _model.usersDT!.toList().cast<UserStruct>();
-      });
-    });
   }
 
   @override
@@ -92,55 +75,86 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Builder(
-                builder: (context) {
-                  final usersList = FFAppState().users.toList();
-                  return ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: usersList.length,
-                    itemBuilder: (context, usersListIndex) {
-                      final usersListItem = usersList[usersListIndex];
-                      return Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            width: 45.0,
-                            height: 45.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(0.0),
-                              child: Image.network(
-                                'http://pocketbase.proplayclub.ru/api/files/${usersListItem.collectionId}/${usersListItem.id}/${usersListItem.avatar}',
-                                width: 45.0,
-                                height: 45.0,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+              FutureBuilder<ApiCallResponse>(
+                future: UserGroup.userslistCall.call(),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
                           ),
-                          Column(
+                        ),
+                      ),
+                    );
+                  }
+                  final listViewUserslistResponse = snapshot.data!;
+                  return Builder(
+                    builder: (context) {
+                      final usersList = UserGroup.userslistCall
+                              .items(
+                                listViewUserslistResponse.jsonBody,
+                              )
+                              ?.toList() ??
+                          [];
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: usersList.length,
+                        itemBuilder: (context, usersListIndex) {
+                          final usersListItem = usersList[usersListIndex];
+                          return Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Text(
-                                usersListItem.username,
-                                style: FlutterFlowTheme.of(context).bodyMedium,
+                              Container(
+                                width: 45.0,
+                                height: 45.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(0.0),
+                                  child: Image.network(
+                                    'https://picsum.photos/seed/641/600',
+                                    width: 45.0,
+                                    height: 45.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                               ),
-                              Text(
-                                usersListItem.id,
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                              Text(
-                                usersListItem.username,
-                                style: FlutterFlowTheme.of(context).bodyMedium,
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    getJsonField(
+                                      usersListItem,
+                                      r'''$.username''',
+                                    ).toString(),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                  Text(
+                                    currentUserUid,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                  Text(
+                                    'Hello World',
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                ],
                               ),
                             ],
-                          ),
-                        ],
+                          );
+                        },
                       );
                     },
                   );
