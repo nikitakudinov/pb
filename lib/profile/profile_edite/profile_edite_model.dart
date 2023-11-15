@@ -18,7 +18,7 @@ class ProfileEditeModel extends FlutterFlowModel<ProfileEditeWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // Stores action output result for [Backend Call - API (Upload Avatar)] action in Button widget.
-  ApiCallResponse? apiResultsz712;
+  ApiCallResponse? apiResultsl7;
 
   /// Initialization and disposal methods.
 

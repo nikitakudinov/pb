@@ -106,9 +106,7 @@ class UploadAvatarCall {
       callName: 'Upload Avatar',
       apiUrl: '${UserGroup.baseUrl}records',
       callType: ApiCallType.POST,
-      headers: {
-        'Authorization': 'TOKEN',
-      },
+      headers: {},
       params: {
         'avatar': avatar,
       },
